@@ -1,1 +1,1 @@
-# Project: Datamodeling with Postgres
+# Project: Data modeling with Postgres
