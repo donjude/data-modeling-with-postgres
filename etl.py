@@ -6,6 +6,14 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """
+    This function reads the song datasets and inserts them into the songs and artists tables.
+    
+    Pararmeters:
+        cur : cursor to execute queries acquired from sparkifydb
+        filepath: filepath of the JSON files to load
+    """
+    
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -23,6 +31,11 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """
+    This function reads the log activity datasets and insert them into time, users, 
+    and songplays tables of the sparkifydb.
+    """
+    
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -82,6 +95,16 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """
+    - Get all JSON files in the specify directory
+    - Process the JSON files
+    - Parameter:
+        cur : cursor acquired from the sparkify database (sparkifydb)
+        conn : connection to postgresql and sparkify database
+        filepath : the specified directory for the JSON files
+        func : external function for loading the files into sparkifydb tables   
+    """
+    
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -103,6 +126,18 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """
+    This function executes all the other functions above
+    Upon execution connection to the postgresql and the database sparkifydb is established 
+    and cursor retrieved.
+    
+    It Proceeds to execute the ETL process that extract, transform and loads the songs and log 
+    files into the sparkifydb tables
+    
+    Usage:
+        execute python etl.py in the command shell
+    """
+    
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
