@@ -63,10 +63,50 @@ These tables references the fact table and contains descriptive attributes relat
         ,level text
     )
     ```
-    
+
+
 - **songs** - songs in music database
     - *song_id, title, artist_id, year, duration*
+    
+    ```sql
+    CREATE TABLE IF NOT EXISTS songs
+    (
+        song_id text PRIMARY KEY
+        ,title text NOT NULL
+        ,artist_id text NOT NULL
+        ,year int
+        ,duration float NOT NULL
+    )
+    ```
+
+
 - **artists** - artists in music database
     - *artist_id, name, location, latitude, longitude*
+    
+    ```sql
+    CREATE TABLE IF NOT EXISTS artists
+    (
+        artist_id text PRIMARY KEY
+        ,name text NOT NULL
+        ,location text 
+        ,lattitude float 
+        ,longitude float
+    )
+    ```
+
+
 - **time** - timestamps of records in songplays broken down into specific units
     - *start_time, hour, day, week, month, year, weekday*
+    
+    ```sql
+    CREATE TABLE IF NOT EXISTS time
+    (
+        start_time TIMESTAMP PRIMARY KEY
+        ,hour int
+        ,day int
+        ,week int
+        ,month int
+        ,year int
+        ,weekday text
+    )
+    ```
