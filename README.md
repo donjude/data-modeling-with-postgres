@@ -110,3 +110,19 @@ These tables references the fact table and contains descriptive attributes relat
         ,weekday text
     )
     ```
+
+## Project Setup
+The project setup consist of the data and all the scripts require to reproduce this project.
+
+- `data` - This folder contains all the relevant JSON files for both songs and log files.
+- `sql_queries.py` - This script contains all the SQL queries for creating all the tables and inserting data into the tables.
+- `create_tables.py` - This script contains code for dropping and creating a database. It executes the create and drop tables queries in `sql_queries.py`
+- `etl.ipynb` - This notebook if for the initial coding and testing of the etl process.
+- `etl.py` - This script implements the codes in the `etl.ipynb` notebook for a smooth extract transform and loading of the datasets into the database.
+- `test.ipynb` - This notebook test to see if data was inserted successfully into the database tables.
+
+### Run Script
+To run the script:
+1. Execute `python create_tables.py` in the command console or jupyterlab terminal to drop, create database and tables in sparkifydb.
+2. Execute `python etl.py` in the command console or jupyterlab terminal to extract the source files, transform the files and load them into the various fact and dimension tables.
+3. Run the script in the notebook `test.ipynb` to test if the etl process loaded the files successfully.
